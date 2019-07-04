@@ -12,11 +12,11 @@ MAINTAINER 475647575@qq.com
 USER root
 
 RUN yum -y install bind
+
+# Add some tools, make it easier to run test.
 RUN yum -y install bind-utils
-RUN yum clean all
-RUN mv /etc/named.conf /var/named/
 
 EXPOSE 53:53/udp
 EXPOSE 53:53/tcp
 
-CMD named-checkconf /var/named/named.conf && named -f -u named -c /var/named/named.conf
+CMD named-checkconf /etc/named.conf && named -f -u named -c /etc/named.conf
